@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Gray Man</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="video.css"> 
+  <link rel="stylesheet" href="TestButton.css">
+  <link rel="stylesheet" href="font.css">
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet">
+  <!-- slides -->
+ <link rel="stylesheet" href="mainslide.css">
+ <script src="autoslide.js" defer></script>
+</head>
+<body>
+
+
+  <!-- 🎬 Intro Video (plays once) -->
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="intro.mp4" type="video/mp4" />
+  </video>
+
+  <!-- 🔁 Looping Background Video (hidden initially) -->
+  <video id="loopVideo" muted loop playsinline style="display: none;">
+    <source src="loop.mp4" type="video/mp4" />
+  </video>
+    
+  <!-- ✨ Overlay Text Content -->
+  <div class="content">
+    <!-- <h1 class="grayman-text">THE GRAY MAN</h1> -->
+     <div class="hero">
+     <h1 class="heading">THE gray man</h1>
+     <button class="Button" onclick="window.location.href='selection.html'">Start Countdown</button>
+     </div>
+    <!-- <p>See how many seconds of life you may have left. It's not to scare you — it's to inspire you to live better, stronger, and more purposefully.</p> -->
+    
+  </div>
+
+  <!-- 🔊 Audio file (separate) -->
+<audio id="introAudio" preload="auto">
+  <source src="intro132.mp3" type="audio/mp3" />
+</audio>
+
+    <!-- 🔊 Audio Toggle Button -->
+  <button id="soundToggle" aria-label="Toggle sound">🔇</button>
+ 
+  <script>
+    function goToCountdown() {
+      document.querySelector('.start-button').classList.add('fade-out');
+      document.body.classList.add('page-exit');
+      setTimeout(() => {
+        window.location.href = 'countdown.html';
+      }, 400);
+    }
+  </script>
+
+    <!-- 🔄 Script to switch videos -->
+  <script>
+    const introVideo = document.getElementById('introVideo');
+    const loopVideo = document.getElementById('loopVideo');
+      const introAudio = document.getElementById('introAudio');
+    const soundToggle = document.getElementById('soundToggle');
+
+    
+  let isPlaying = false;
+
+    soundToggle.addEventListener('click', () => {
+    if (!isPlaying) {
+      introAudio.currentTime = introVideo.currentTime; // sync if needed
+      introAudio.play();
+      soundToggle.textContent = '🔊';
+      isPlaying = true;
+    } else {
+      introAudio.pause();
+      soundToggle.textContent = '🔇';
+      isPlaying = false;
+    }
+  });
+
+    // After intro ends → play loop video
+    // 🎬 When intro ends
+    introVideo.addEventListener('ended', () => {
+      introVideo.style.display = 'none';
+      loopVideo.style.display = 'block';
+      loopVideo.play();
+    soundToggle.style.display = 'none'; // Hide icon after intro
+  });
+  </script>
+</body>
+
+<!-- Slider -->
+  <div class="slider">
+        <div class="item">
+            <h1 class="sh1">Slide 1</h1>
+            <p>One Goal. No Distractions.
+            Instead of chasing dozens of meaningless goals,
+            The Gray Man lets you focus on one real objective — the one that actually matters right now.</p>
+        </div>
+        <div class="item">
+            <h1 class="sh1">Slide 2</h1>
+               <p>The Goal Countdown
+              Set your goal deadline.
+              Then watch the countdown run in real time.
+              Not to motivate you — but to remind you that waiting has a cost.</p>
+        </div>
+        <div class="item">
+            <h1 class="sh1">Slide 3</h1>
+                <p>This Is About Awareness, Not Comfort
+                The Gray Man won’t make you feel good.
+                It won’t tell you “everything will be fine.”
+                It simply shows you the truth — clearly, quietly, consistently.</p>
+        </div>
+        <div class="item">
+            <h1 class="sh1">Slide 4</h1>
+                <p>Welcome to The Gray Man
+                This website exists for one reason:
+                to make time visible.
+                Not in quotes, not in feelings in numbers you can’t ignore.</p>
+        </div>
+        <div class="item">
+            <h1 class="sh1">Slide 5</h1>
+                <p>
+                The Gray Man calculates exactly how long you’ve been alive —
+                years, days, hours, minutes, and seconds — accurately and continuously.</p>
+        </div>
+        <div class="item">
+            <h1 class="sh1">Slide 6</h1>
+               <p>Why Exact Age Matters
+              Most people say “I’m 18” or “I’m 25” and stop there.
+              But that hides reality.
+              You’re not just a number — you’re a timeline already in progress.</p>
+        </div>
+          <div class="item">
+            <h1 class="sh1">Slide 7</h1>
+              <p>Time Is Not Abstract Here
+              On this website, time isn’t a concept.
+              It’s a counter that never pauses.
+              Every second added to your life is one second you can never get back.</p>
+        </div>
+        <button id="next">></button>
+        <button id="prev"><</button>
+    </div>
+
+</html>

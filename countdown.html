@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Countdown</title>
+  <link rel="stylesheet" href="countdown.css">
+  <link rel="stylesheet" href="coundownanimation.css">
+  <script src="script.js"></script>
+  
+
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_red.css">
+  
+</head>
+
+<body>
+  <div class="container">
+    <h1>⏳ Your Life Countdown</h1>
+    <p>Enter your details to start your timer</p>
+
+    <div class="input-group">
+      <label for="birthDate">Your Birthdate:</label><br />
+      <input type="date" id="birthDate" autocomplete="bday" /><br /><br />
+
+      <label for="deathAge">Expected Death Age:</label><br />
+      <input
+        type="number"
+        id="deathAge"
+        placeholder="e.g. 80"
+        min="10"
+        max="130"
+        autocomplete="off"
+      /><br /><br />
+
+      <button onclick="startCountdown()" class="button">Start Countdown</button>
+      <div id="countdown"></div>
+    </div>
+  </div>
+
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- Flatpickr config -->
+  <script>
+    flatpickr("#birthDate", {
+      dateFormat: "Y-m-d",
+      maxDate: "today",
+      minDate: "1900-01-01",
+      defaultDate: "2005-01-01",
+      monthSelectorType: "dropdown",
+      onOpen: function (selectedDates, dateStr, instance) {
+        setTimeout(() => {
+          const yearInput = instance.calendarContainer.querySelector(".flatpickr-year");
+
+          if (yearInput) {
+            yearInput.addEventListener("beforeinput", function (e) {
+              const inputType = e.inputType;
+              const isTyping = inputType === "insertText" || inputType === "insertFromPaste";
+              const currentLength = this.value.length;
+              const selectionLength = window.getSelection().toString().length;
+
+              if (isTyping && currentLength - selectionLength >= 4) {
+                e.preventDefault();
+              }
+            });
+
+            yearInput.addEventListener("wheel", function (e) {
+              e.preventDefault();
+            });
+
+            yearInput.addEventListener("input", function () {
+              this.value = this.value.replace(/[^0-9]/g, "");
+            });
+          }
+        }, 10);
+      },
+    });
+  </script>
+
+  <!-- Voice selector -->
+  <div class="voice" id="voice-container"></div>
+  <script>
+    fetch("voice-selecter.html")
+      .then((res) => res.text())
+      .then((html) => {
+        document.getElementById("voice-container").innerHTML = html;
+        initVoiceSelector();
+      });
+  </script>
+
+  
+</body>
+</html>
+
+
+
+<!-- Extra Work -->
+

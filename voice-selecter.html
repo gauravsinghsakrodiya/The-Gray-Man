@@ -1,0 +1,60 @@
+<!-- voice-selector.html -->
+<div class="top-controls">
+  <!-- 🔊 Sound Toggle -->
+  <button id="soundToggle" aria-label="Toggle sound">🔊</button>
+
+  <!-- 🌐 Language/Voice Selector -->
+   <div class="language">
+  <select id="voiceSelect" aria-label="Select Voice">
+    <option value="">Select Voice</option>
+  </select>
+  </div>
+</div>
+
+
+
+<style>
+  .top-controls {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    z-index: 999;
+    max-width: 100%;
+  }
+
+  #soundToggle,
+  #voiceSelect {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 480px) {
+    .top-controls {
+      flex-direction: row;
+      right: 10px;
+      top: 10px;
+    }
+
+    #voiceSelect {
+      font-size: 12px;
+      max-width: 120px;
+    }
+
+    #soundToggle {
+      font-size: 14px;
+      padding: 6px 8px;
+    }
+  }
+</style>
+
+

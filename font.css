@@ -1,0 +1,9 @@
+    .grayman-text {
+      font-family: 'League Gothic', sans-serif;
+      font-size: 6rem;
+      color: #dcdcdc;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+       word-spacing:20px ;
+      transform: scaley(1.9); /* Stretch text wider */
+    }

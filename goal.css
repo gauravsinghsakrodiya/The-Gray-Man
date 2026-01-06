@@ -1,0 +1,347 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #0f0f0f;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.container {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 16px;
+  width: 95%;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: none; /* 🔥 Removed red glow */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff5c5c;
+}
+
+label {
+  display: block;
+  margin: 15px auto 5px;
+  font-weight: bold;
+  color: #ffcccb;
+  text-align: center;
+  width: 100%;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: #fff;
+  border: none;
+  margin-top: 6px;
+  box-sizing: border-box;
+}
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #444;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ff5c5c;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.date-group {
+  margin-top: 15px;
+}
+
+.date-group input:disabled {
+  background-color: #444;
+  color: #aaa;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 12px;
+  color: white;
+  background: #ff5c5c;
+  font-size: 16px;
+}
+
+.button::after {
+  content: "";
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ff5c5c;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.button::before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5,
+    #002BFF, #FF00C8, #FF0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(8px);
+  animation: glowing 20s linear infinite;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+.button:active::after {
+  background: transparent;
+}
+
+.button:active {
+  color: #000;
+  font-weight: bold;
+}
+
+#result {
+  margin-top: 25px;
+  padding: 15px;
+  background: #252525;
+  border-left: 4px solid #48ff00;
+  border-radius: 8px;
+  display: none;
+  color: #fff;
+}
+
+.error {
+  margin-top: 10px;
+  color: #ff4444;
+  font-weight: bold;
+}
+
+
+/* calender */
+.flatpickr-calendar {
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  padding: 10px;
+}
+
+.flatpickr-day.today {
+  border: none;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background-color: #ff3b30 !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+.flatpickr-time {
+  font-size: 14px;
+  color: #333;
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+/* Remove red background on individual options */
+.flatpickr-monthDropdown-months option {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+/* Popup card */
+.popup-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  padding: 24px;
+  width: 90%;
+  max-width: 320px;
+  z-index: 9999;
+  text-align: center;
+  display: none; /* hidden by default */
+  border: 2px solid #ff5c5c;
+}
+
+.popup-card h3 {
+  margin-bottom: 12px;
+  color: #ff5c5c;
+  font-size: 1.2rem;
+}
+
+.popup-card p {
+  font-size: 0.95rem;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+.popup-card button {
+  padding: 10px 20px;
+  background: #ff5c5c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.popup-card button:hover {
+  background: #ff1c1c;
+}
+
+/* goal sidebar */
+/* Sidebar Container */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  background-color: #000000;
+  border-right: 1px solid #ccc;
+  padding: 15px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Sidebar always open on desktop */
+@media (min-width: 768px) {
+  #sidebar {
+    transform: translateX(0);
+  }
+
+  #sidebarToggle {
+    display: none;
+  }
+}
+
+/* Sidebar hidden by default on mobile */
+@media (max-width: 767px) {
+  #sidebar {
+    transform: translateX(-100%);
+  }
+
+  #sidebar.open {
+    transform: translateX(0);
+  }
+
+  #sidebarToggle {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+/* Style for history content inside sidebar */
+#historyBox {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#historyBox h3 {
+  margin-top: 0;
+}
+
+#historyBox hr {
+  margin: 10px 0;
+}
+
+

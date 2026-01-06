@@ -1,0 +1,116 @@
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #00aaff, #1a1a1a);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }  
+  p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-bottom: -20px;
+      margin-top: 1rem;
+      color: #ccc;
+    }
+
+    /* Try My self Button */
+
+    .start-button {
+      background-color: #ff3b30;
+      color: white;
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .start-button:hover {
+      background-color: #ff6155;
+    }
+
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .start-button {
+        width: 80%;
+      }    
+    }
+    .heading{
+        font-family: Arial, Helvetica, sans-serif;
+        color:rgba(233, 233, 233, 0.5);
+        margin: 0;
+    }
+
+    /* 🔁 Both Videos */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+/* 🔊 Sound toggle icon */
+#soundToggle {
+  position: fixed; /* important: not absolute */
+  top: 20px;
+  right: 20px;
+  font-size: 26px;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  z-index: 1000; /* high enough to stay on top */
+}
+
+#soundToggle:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* text and slider */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1px; /* spacing between heading and button */
+}
+
+.heading {
+  font-size: 5vw; /* Responsive size */
+  color: rgba(233, 233, 233, 0.8);
+  margin: 2.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  word-break: break-word;
+    display: inline-block; /* required for transform to work properly */
+  transform: scaleY(2.2); /* 1.5 = 150% vertical stretch */
+}
+
+@media (max-width: 600px) {
+  .heading {
+    font-size: 8vw;
+    line-height: 1.1;
+  }
+}

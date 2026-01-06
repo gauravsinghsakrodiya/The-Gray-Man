@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Coundown</title>
+    <link rel="stylesheet" href="birthcoundown.css">
+      <!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_red.css">
+<script src="birth.js"></script>
+</head>
+<body>
+    <div class="input-group">
+    <label for="birthdate">Enter Your Birth Date</label>
+    <input type="date" id="birthDate" autocomplete="bday">
+    <button class="btn" onclick="startLivedTimer()">Start</button>
+    <div class="output" id="livedOutput"></div>
+    </div>
+
+<diV>
+
+  <!-- voice selecter -->
+
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- calender script -->
+<script>
+  flatpickr("#birthDate", {
+    dateFormat: "Y-m-d",
+    maxDate: "today",
+    minDate: "1900-01-01",
+    defaultDate: "2005-01-01",
+    monthSelectorType: "dropdown",
+    
+onOpen: function(selectedDates, dateStr, instance) {
+  setTimeout(() => {
+    const yearInput = instance.calendarContainer.querySelector(".flatpickr-year");
+
+    if (yearInput) {
+      // Block typing/pasting more than 4 digits
+      yearInput.addEventListener("beforeinput", function (e) {
+        const inputType = e.inputType;
+        const isTyping = inputType === "insertText" || inputType === "insertFromPaste";
+        const currentLength = this.value.length;
+        const selectionLength = window.getSelection().toString().length;
+
+        // Allow editing selected text, but block if 4 digits already and nothing selected
+        if (isTyping && currentLength - selectionLength >= 4) {
+          e.preventDefault();
+        }
+      });
+
+      // Optional: prevent scroll from changing the year
+      yearInput.addEventListener("wheel", function (e) {
+        e.preventDefault();
+      });
+
+      // Optional: prevent entering non-numeric characters
+      yearInput.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+    }
+  }, 10);
+}
+});
+</script>
+
+</diV>
+</body>
+</html>

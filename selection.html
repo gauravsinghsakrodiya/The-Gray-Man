@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="selection.css">
+  <title>Select Service</title>
+
+</head>
+<body>
+
+  <h1>Select Service</h1>
+
+  <div class="card-container">
+    <div class="card" onclick="location.href='countdown.html'">
+      <h2>Death Calculator</h2>
+      <p>Estimate your remaining time based on your birthdate. This calculator shows an estimate of how long you may have left based on various life expectancy data. It's just a fun way to reflect on life.</p>
+    </div>
+
+    <div class="card" onclick="location.href='birthcoundown.html'">
+      <h2>Birth Tracker</h2>
+      <p>Track how many years, days, and even seconds you've been alive. A detailed breakdown of your entire lifespan till today, updated live with a dynamic counter that runs in real time.</p>
+    </div>
+
+    <div class="card">
+      <h2>Life Summary</h2>
+      <p>See your life divided into stages: childhood, teenage years, adulthood, and beyond. Visualize where you are in your journey and reflect on what’s behind and ahead of you.
+        <h3>Available Soon</h3>
+      </p>
+    </div>
+
+    <div class="card" onclick="location.href='goal.html'">
+      <h2>Custom Countdown</h2>
+      <p>Create personalized countdowns for your goals, birthdays, or any important events. Set a target date and watch as time ticks down in real-time with a smooth, clean UI.</p>
+    </div>
+  </div>
+
+  <!-- Death Coundown  Script-->
+     <script>
+    function goToCountdown() {
+      document.querySelector('.start-button').classList.add('fade-out');
+      document.body.classList.add('page-exit');
+      setTimeout(() => {
+        window.location.href = 'countdown.html';
+      }, 400);
+    }
+  </script>
+
+</body>
+</html>
